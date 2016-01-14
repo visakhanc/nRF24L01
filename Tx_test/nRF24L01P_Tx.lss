@@ -1,0 +1,1083 @@
+
+nRF24L01P_Tx.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000412  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000006  00800060  00000412  000004a6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000013  00800066  00800066  000004ac  2**0
+                  ALLOC
+  3 .debug_aranges 00000060  00000000  00000000  000004ac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 000000d8  00000000  00000000  0000050c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000ad3  00000000  00000000  000005e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000494  00000000  00000000  000010b7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000007d7  00000000  00000000  0000154b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000110  00000000  00000000  00001d24  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000417  00000000  00000000  00001e34  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000005c6  00000000  00000000  0000224b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000080  00000000  00000000  00002811  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	7f c0       	rjmp	.+254    	; 0x104 <__vector_2>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	e2 e1       	ldi	r30, 0x12	; 18
+  3a:	f4 e0       	ldi	r31, 0x04	; 4
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <.do_copy_data_start>
+
+0000003e <.do_copy_data_loop>:
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+
+00000042 <.do_copy_data_start>:
+  42:	a6 36       	cpi	r26, 0x66	; 102
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <.do_copy_data_loop>
+
+00000048 <__do_clear_bss>:
+  48:	10 e0       	ldi	r17, 0x00	; 0
+  4a:	a6 e6       	ldi	r26, 0x66	; 102
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a9 37       	cpi	r26, 0x79	; 121
+  54:	b1 07       	cpc	r27, r17
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	02 d0       	rcall	.+4      	; 0x5e <main>
+  5a:	d9 c1       	rjmp	.+946    	; 0x40e <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <main>:
+
+static uint8_t tx_buf[CONFIG_NRF_STATIC_PL_LENGTH];
+static uint8_t addr[CONFIG_NRF_ADDR_LEN] = CONFIG_NRF_ADDRESS;
+
+int main(void) 
+{
+  5e:	cf 93       	push	r28
+  60:	df 93       	push	r29
+	RED_LED_OUT();
+  62:	b8 9a       	sbi	0x17, 0	; 23
+	RED_LED_ON();
+  64:	c0 9a       	sbi	0x18, 0	; 24
+	nrf_init(NRF_MODE_PTX, addr);
+  66:	80 e0       	ldi	r24, 0x00	; 0
+  68:	60 e6       	ldi	r22, 0x60	; 96
+  6a:	70 e0       	ldi	r23, 0x00	; 0
+  6c:	4c d1       	rcall	.+664    	; 0x306 <nrf_init>
+	sei();
+  6e:	78 94       	sei
+  70:	88 ee       	ldi	r24, 0xE8	; 232
+  72:	93 e0       	ldi	r25, 0x03	; 3
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+  74:	28 ec       	ldi	r18, 0xC8	; 200
+  76:	30 e0       	ldi	r19, 0x00	; 0
+  78:	f9 01       	movw	r30, r18
+  7a:	31 97       	sbiw	r30, 0x01	; 1
+  7c:	f1 f7       	brne	.-4      	; 0x7a <main+0x1c>
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+  7e:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+  80:	d9 f7       	brne	.-10     	; 0x78 <main+0x1a>
+  82:	c8 ec       	ldi	r28, 0xC8	; 200
+  84:	d0 e0       	ldi	r29, 0x00	; 0
+	
+	_delay_ms(100);
+	while(1) {
+		RED_LED_ON();
+  86:	c0 9a       	sbi	0x18, 0	; 24
+  88:	84 ef       	ldi	r24, 0xF4	; 244
+  8a:	91 e0       	ldi	r25, 0x01	; 1
+  8c:	fe 01       	movw	r30, r28
+  8e:	31 97       	sbiw	r30, 0x01	; 1
+  90:	f1 f7       	brne	.-4      	; 0x8e <main+0x30>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+  92:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+  94:	d9 f7       	brne	.-10     	; 0x8c <main+0x2e>
+		_delay_ms(50);
+		RED_LED_OFF();
+  96:	c0 98       	cbi	0x18, 0	; 24
+		tx_buf[0]++;
+  98:	80 91 66 00 	lds	r24, 0x0066
+  9c:	8f 5f       	subi	r24, 0xFF	; 255
+  9e:	80 93 66 00 	sts	0x0066, r24
+		if(nrf_transmit_packet(tx_buf, sizeof(tx_buf)) != 0) {
+  a2:	86 e6       	ldi	r24, 0x66	; 102
+  a4:	90 e0       	ldi	r25, 0x00	; 0
+  a6:	60 e1       	ldi	r22, 0x10	; 16
+  a8:	f7 d0       	rcall	.+494    	; 0x298 <nrf_transmit_packet>
+  aa:	88 23       	and	r24, r24
+  ac:	81 f0       	breq	.+32     	; 0xce <main+0x70>
+  ae:	84 ef       	ldi	r24, 0xF4	; 244
+  b0:	91 e0       	ldi	r25, 0x01	; 1
+  b2:	fe 01       	movw	r30, r28
+  b4:	31 97       	sbiw	r30, 0x01	; 1
+  b6:	f1 f7       	brne	.-4      	; 0xb4 <main+0x56>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+  b8:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+  ba:	d9 f7       	brne	.-10     	; 0xb2 <main+0x54>
+			_delay_ms(50);
+			RED_LED_ON();
+  bc:	c0 9a       	sbi	0x18, 0	; 24
+  be:	84 ef       	ldi	r24, 0xF4	; 244
+  c0:	91 e0       	ldi	r25, 0x01	; 1
+  c2:	fe 01       	movw	r30, r28
+  c4:	31 97       	sbiw	r30, 0x01	; 1
+  c6:	f1 f7       	brne	.-4      	; 0xc4 <main+0x66>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+  c8:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+  ca:	d9 f7       	brne	.-10     	; 0xc2 <main+0x64>
+			_delay_ms(50);
+			RED_LED_OFF();
+  cc:	c0 98       	cbi	0x18, 0	; 24
+  ce:	80 e1       	ldi	r24, 0x10	; 16
+  d0:	97 e2       	ldi	r25, 0x27	; 39
+  d2:	fe 01       	movw	r30, r28
+  d4:	31 97       	sbiw	r30, 0x01	; 1
+  d6:	f1 f7       	brne	.-4      	; 0xd4 <main+0x76>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+  d8:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+  da:	a9 f2       	breq	.-86     	; 0x86 <main+0x28>
+  dc:	fa cf       	rjmp	.-12     	; 0xd2 <main+0x74>
+
+000000de <nrf_write_reg>:
+	return reg;
+}
+
+/* Writes to a register */
+static uint8_t nrf_write_reg(uint8_t reg, uint8_t val)
+{
+  de:	0f 93       	push	r16
+  e0:	1f 93       	push	r17
+  e2:	06 2f       	mov	r16, r22
+	uint8_t status;
+	
+	CSN_LOW();
+  e4:	c2 98       	cbi	0x18, 2	; 24
+	if(reg < WRITE_REG) {  /* write register with data */
+  e6:	80 32       	cpi	r24, 0x20	; 32
+  e8:	30 f4       	brcc	.+12     	; 0xf6 <nrf_write_reg+0x18>
+		status = SPI_TxRx(WRITE_REG|reg);  
+  ea:	80 62       	ori	r24, 0x20	; 32
+  ec:	70 d1       	rcall	.+736    	; 0x3ce <SPI_TxRx>
+  ee:	18 2f       	mov	r17, r24
+		SPI_TxRx(val);
+  f0:	80 2f       	mov	r24, r16
+  f2:	6d d1       	rcall	.+730    	; 0x3ce <SPI_TxRx>
+  f4:	02 c0       	rjmp	.+4      	; 0xfa <nrf_write_reg+0x1c>
+	}
+	else { /* command with no data */
+		status = SPI_TxRx(reg);
+  f6:	6b d1       	rcall	.+726    	; 0x3ce <SPI_TxRx>
+  f8:	18 2f       	mov	r17, r24
+	}
+	CSN_HIGH();
+  fa:	c2 9a       	sbi	0x18, 2	; 24
+	
+	return status;
+}
+  fc:	81 2f       	mov	r24, r17
+  fe:	1f 91       	pop	r17
+ 100:	0f 91       	pop	r16
+ 102:	08 95       	ret
+
+00000104 <__vector_2>:
+}
+
+
+/* ISR for  IRQ */
+ISR(INT1_vect)
+{
+ 104:	1f 92       	push	r1
+ 106:	0f 92       	push	r0
+ 108:	0f b6       	in	r0, 0x3f	; 63
+ 10a:	0f 92       	push	r0
+ 10c:	11 24       	eor	r1, r1
+ 10e:	2f 93       	push	r18
+ 110:	3f 93       	push	r19
+ 112:	4f 93       	push	r20
+ 114:	5f 93       	push	r21
+ 116:	6f 93       	push	r22
+ 118:	7f 93       	push	r23
+ 11a:	8f 93       	push	r24
+ 11c:	9f 93       	push	r25
+ 11e:	af 93       	push	r26
+ 120:	bf 93       	push	r27
+ 122:	ef 93       	push	r30
+ 124:	ff 93       	push	r31
+	uint8_t status;
+	
+	status = nrf_write_reg(STATUS, (STAT_MAX_RT|STAT_TX_DS|STAT_RX_DR)); /* Get and clear interrupt flags */
+ 126:	87 e0       	ldi	r24, 0x07	; 7
+ 128:	60 e7       	ldi	r22, 0x70	; 112
+ 12a:	d9 df       	rcall	.-78     	; 0xde <nrf_write_reg>
+	if(status & STAT_RX_DR)
+ 12c:	28 2f       	mov	r18, r24
+ 12e:	86 ff       	sbrs	r24, 6
+ 130:	03 c0       	rjmp	.+6      	; 0x138 <__vector_2+0x34>
+	{
+		/* received data */
+		rx_ready = true;
+ 132:	81 e0       	ldi	r24, 0x01	; 1
+ 134:	80 93 77 00 	sts	0x0077, r24
+	}
+	
+	if(status & STAT_TX_DS)
+ 138:	25 ff       	sbrs	r18, 5
+ 13a:	03 c0       	rjmp	.+6      	; 0x142 <__vector_2+0x3e>
+	{
+		/* transmit done */
+		tx_done = true;
+ 13c:	81 e0       	ldi	r24, 0x01	; 1
+ 13e:	80 93 76 00 	sts	0x0076, r24
+	}
+	
+	if(status & STAT_MAX_RT)
+ 142:	24 ff       	sbrs	r18, 4
+ 144:	03 c0       	rjmp	.+6      	; 0x14c <__vector_2+0x48>
+	{
+		/* Maxtimum reties exceeded */
+		max_retries = true;
+ 146:	81 e0       	ldi	r24, 0x01	; 1
+ 148:	80 93 78 00 	sts	0x0078, r24
+	}
+}
+ 14c:	ff 91       	pop	r31
+ 14e:	ef 91       	pop	r30
+ 150:	bf 91       	pop	r27
+ 152:	af 91       	pop	r26
+ 154:	9f 91       	pop	r25
+ 156:	8f 91       	pop	r24
+ 158:	7f 91       	pop	r23
+ 15a:	6f 91       	pop	r22
+ 15c:	5f 91       	pop	r21
+ 15e:	4f 91       	pop	r20
+ 160:	3f 91       	pop	r19
+ 162:	2f 91       	pop	r18
+ 164:	0f 90       	pop	r0
+ 166:	0f be       	out	0x3f, r0	; 63
+ 168:	0f 90       	pop	r0
+ 16a:	1f 90       	pop	r1
+ 16c:	18 95       	reti
+
+0000016e <nrf_set_ack_payload>:
+/* 
+ * 	Write ACK payload for a pipe
+ *		
+ */
+void nrf_set_ack_payload(uint8_t pipe, uint8_t *buf, uint8_t length)
+{
+ 16e:	1f 93       	push	r17
+ 170:	cf 93       	push	r28
+ 172:	df 93       	push	r29
+ 174:	eb 01       	movw	r28, r22
+ 176:	14 2f       	mov	r17, r20
+	CSN_LOW();
+ 178:	c2 98       	cbi	0x18, 2	; 24
+	SPI_TxRx(WR_ACK_PLOAD|pipe);
+ 17a:	88 6a       	ori	r24, 0xA8	; 168
+ 17c:	28 d1       	rcall	.+592    	; 0x3ce <SPI_TxRx>
+ 17e:	03 c0       	rjmp	.+6      	; 0x186 <nrf_set_ack_payload+0x18>
+	while(length--) {
+		SPI_TxRx(*buf++);
+ 180:	89 91       	ld	r24, Y+
+ 182:	25 d1       	rcall	.+586    	; 0x3ce <SPI_TxRx>
+ 184:	11 50       	subi	r17, 0x01	; 1
+ */
+void nrf_set_ack_payload(uint8_t pipe, uint8_t *buf, uint8_t length)
+{
+	CSN_LOW();
+	SPI_TxRx(WR_ACK_PLOAD|pipe);
+	while(length--) {
+ 186:	11 23       	and	r17, r17
+ 188:	d9 f7       	brne	.-10     	; 0x180 <nrf_set_ack_payload+0x12>
+		SPI_TxRx(*buf++);
+	}
+	CSN_HIGH();
+ 18a:	c2 9a       	sbi	0x18, 2	; 24
+}
+ 18c:	df 91       	pop	r29
+ 18e:	cf 91       	pop	r28
+ 190:	1f 91       	pop	r17
+ 192:	08 95       	ret
+
+00000194 <nrf_read_reg>:
+	GICR |= (1 << INT1);
+}
+
+/* Reads from a register */
+static uint8_t nrf_read_reg(uint8_t reg)
+{
+ 194:	1f 93       	push	r17
+ 196:	18 2f       	mov	r17, r24
+	uint8_t value;
+	
+	CSN_LOW(); 
+ 198:	c2 98       	cbi	0x18, 2	; 24
+	SPI_TxRx(reg);	/* Transmit register to read */
+ 19a:	19 d1       	rcall	.+562    	; 0x3ce <SPI_TxRx>
+	value = SPI_TxRx(0);  /* Then get the register value */
+ 19c:	80 e0       	ldi	r24, 0x00	; 0
+ 19e:	17 d1       	rcall	.+558    	; 0x3ce <SPI_TxRx>
+	CSN_HIGH();
+ 1a0:	c2 9a       	sbi	0x18, 2	; 24
+	
+	return reg;
+}
+ 1a2:	81 2f       	mov	r24, r17
+ 1a4:	1f 91       	pop	r17
+ 1a6:	08 95       	ret
+
+000001a8 <nrf_receive_packet>:
+ *	Returns: 16 bit
+ *		MSB byte: pipe number
+ *		LSB byte: length of received packet
+ */
+uint8_t nrf_receive_packet(uint8_t *buf, uint8_t *length)
+{
+ 1a8:	9f 92       	push	r9
+ 1aa:	af 92       	push	r10
+ 1ac:	bf 92       	push	r11
+ 1ae:	cf 92       	push	r12
+ 1b0:	df 92       	push	r13
+ 1b2:	ef 92       	push	r14
+ 1b4:	ff 92       	push	r15
+ 1b6:	0f 93       	push	r16
+ 1b8:	1f 93       	push	r17
+ 1ba:	cf 93       	push	r28
+ 1bc:	df 93       	push	r29
+ 1be:	98 2e       	mov	r9, r24
+ 1c0:	c9 2e       	mov	r12, r25
+ 1c2:	5b 01       	movw	r10, r22
+	uint8_t rx_pipe = 0;
+	uint16_t ret;
+	
+	*length = 0;
+ 1c4:	fb 01       	movw	r30, r22
+ 1c6:	10 82       	st	Z, r1
+	if(rx_ready == true) {
+ 1c8:	80 91 77 00 	lds	r24, 0x0077
+ 1cc:	81 30       	cpi	r24, 0x01	; 1
+ 1ce:	11 f0       	breq	.+4      	; 0x1d4 <nrf_receive_packet+0x2c>
+ 1d0:	80 e0       	ldi	r24, 0x00	; 0
+ 1d2:	2e c0       	rjmp	.+92     	; 0x230 <nrf_receive_packet+0x88>
+		rx_ready = false;
+ 1d4:	10 92 77 00 	sts	0x0077, r1
+	return status;
+}
+
+static inline uint8_t nrf_nop(void)
+{
+	return nrf_write_reg(NOP, 0);
+ 1d8:	8f ef       	ldi	r24, 0xFF	; 255
+ 1da:	60 e0       	ldi	r22, 0x00	; 0
+ 1dc:	80 df       	rcall	.-256    	; 0xde <nrf_write_reg>
+}
+
+static inline uint8_t nrf_get_rx_pipe(void)
+{
+	return ((nrf_nop() >> 1) & 0x7);
+ 1de:	e8 2e       	mov	r14, r24
+ 1e0:	e6 94       	lsr	r14
+ 1e2:	f7 e0       	ldi	r31, 0x07	; 7
+ 1e4:	ef 22       	and	r14, r31
+			CSN_LOW();
+			SPI_TxRx(RX_ADDR_P0 + reg);
+			break;
+      
+		case NRF_RX_PLOAD:  /* Read Rx payload */
+			if( (reg = nrf_get_rx_pipe()) < 7) {
+ 1e6:	ef 16       	cp	r14, r31
+ 1e8:	19 f4       	brne	.+6      	; 0x1f0 <nrf_receive_packet+0x48>
+ 1ea:	dd 24       	eor	r13, r13
+ 1ec:	ff 24       	eor	r15, r15
+ 1ee:	07 c0       	rjmp	.+14     	; 0x1fe <nrf_receive_packet+0x56>
+				length = ctr = nrf_read_reg(RD_RX_PLOAD_W);
+ 1f0:	80 e6       	ldi	r24, 0x60	; 96
+ 1f2:	d0 df       	rcall	.-96     	; 0x194 <nrf_read_reg>
+ 1f4:	f8 2e       	mov	r15, r24
+				CSN_LOW();
+ 1f6:	c2 98       	cbi	0x18, 2	; 24
+				SPI_TxRx(RD_RX_PLOAD);
+ 1f8:	81 e6       	ldi	r24, 0x61	; 97
+ 1fa:	e9 d0       	rcall	.+466    	; 0x3ce <SPI_TxRx>
+ 1fc:	df 2c       	mov	r13, r15
+ 1fe:	89 2d       	mov	r24, r9
+ 200:	9c 2d       	mov	r25, r12
+ 202:	9c 01       	movw	r18, r24
+ 204:	e9 01       	movw	r28, r18
+ 206:	04 c0       	rjmp	.+8      	; 0x210 <nrf_receive_packet+0x68>
+		default:
+			break;
+	}
+
+	while(ctr--) {
+		*buf++ = SPI_TxRx(0);
+ 208:	80 e0       	ldi	r24, 0x00	; 0
+ 20a:	e1 d0       	rcall	.+450    	; 0x3ce <SPI_TxRx>
+ 20c:	89 93       	st	Y+, r24
+ 20e:	fa 94       	dec	r15
+
+		default:
+			break;
+	}
+
+	while(ctr--) {
+ 210:	ff 20       	and	r15, r15
+ 212:	d1 f7       	brne	.-12     	; 0x208 <nrf_receive_packet+0x60>
+		*buf++ = SPI_TxRx(0);
+	}
+
+	CSN_HIGH();
+ 214:	c2 9a       	sbi	0x18, 2	; 24
+
+	return (((uint16_t) reg << 8) | length);
+ 216:	cd 2d       	mov	r28, r13
+ 218:	d0 e0       	ldi	r29, 0x00	; 0
+ 21a:	1e 2d       	mov	r17, r14
+ 21c:	00 e0       	ldi	r16, 0x00	; 0
+ 21e:	c0 2b       	or	r28, r16
+ 220:	d1 2b       	or	r29, r17
+	*length = 0;
+	if(rx_ready == true) {
+		rx_ready = false;
+		do {
+			ret = nrf_read_multibyte_reg(NRF_RX_PLOAD, buf);
+		} while (!(nrf_read_reg(FIFO_STATUS) & RX_EMPTY));
+ 222:	87 e1       	ldi	r24, 0x17	; 23
+ 224:	b7 df       	rcall	.-146    	; 0x194 <nrf_read_reg>
+ 226:	80 ff       	sbrs	r24, 0
+ 228:	d7 cf       	rjmp	.-82     	; 0x1d8 <nrf_receive_packet+0x30>
+		*length = (uint8_t)ret;
+ 22a:	f5 01       	movw	r30, r10
+ 22c:	c0 83       	st	Z, r28
+		rx_pipe = (uint8_t)(ret >> 8);
+ 22e:	8d 2f       	mov	r24, r29
+	}
+	return rx_pipe;
+}
+ 230:	df 91       	pop	r29
+ 232:	cf 91       	pop	r28
+ 234:	1f 91       	pop	r17
+ 236:	0f 91       	pop	r16
+ 238:	ff 90       	pop	r15
+ 23a:	ef 90       	pop	r14
+ 23c:	df 90       	pop	r13
+ 23e:	cf 90       	pop	r12
+ 240:	bf 90       	pop	r11
+ 242:	af 90       	pop	r10
+ 244:	9f 90       	pop	r9
+ 246:	08 95       	ret
+
+00000248 <nrf_write_multibyte_reg>:
+
+/* Writes to Multibyte register 
+ * 
+ */
+static void nrf_write_multibyte_reg(uint8_t reg, const uint8_t *buf, uint8_t length)
+{
+ 248:	0f 93       	push	r16
+ 24a:	1f 93       	push	r17
+ 24c:	cf 93       	push	r28
+ 24e:	df 93       	push	r29
+ 250:	18 2f       	mov	r17, r24
+ 252:	eb 01       	movw	r28, r22
+ 254:	04 2f       	mov	r16, r20
+	switch(reg)
+ 256:	86 30       	cpi	r24, 0x06	; 6
+ 258:	41 f0       	breq	.+16     	; 0x26a <nrf_write_multibyte_reg+0x22>
+ 25a:	87 30       	cpi	r24, 0x07	; 7
+ 25c:	18 f4       	brcc	.+6      	; 0x264 <nrf_write_multibyte_reg+0x1c>
+ 25e:	82 30       	cpi	r24, 0x02	; 2
+ 260:	98 f4       	brcc	.+38     	; 0x288 <nrf_write_multibyte_reg+0x40>
+ 262:	03 c0       	rjmp	.+6      	; 0x26a <nrf_write_multibyte_reg+0x22>
+ 264:	87 30       	cpi	r24, 0x07	; 7
+ 266:	81 f4       	brne	.+32     	; 0x288 <nrf_write_multibyte_reg+0x40>
+ 268:	08 c0       	rjmp	.+16     	; 0x27a <nrf_write_multibyte_reg+0x32>
+	return ((nrf_nop() >> 1) & 0x7);
+}
+
+static inline uint8_t nrf_get_address_width(void)
+{
+	return (nrf_read_reg(SETUP_AW) + 2);
+ 26a:	83 e0       	ldi	r24, 0x03	; 3
+ 26c:	93 df       	rcall	.-218    	; 0x194 <nrf_read_reg>
+ 26e:	08 2f       	mov	r16, r24
+ 270:	0e 5f       	subi	r16, 0xFE	; 254
+	{
+		case NRF_PIPE0:
+		case NRF_PIPE1:
+		case NRF_TX_PIPE:  /* Write pipe address */
+			length = nrf_get_address_width();
+			CSN_LOW();
+ 272:	c2 98       	cbi	0x18, 2	; 24
+			SPI_TxRx(WRITE_REG + RX_ADDR_P0 + reg);
+ 274:	81 2f       	mov	r24, r17
+ 276:	86 5d       	subi	r24, 0xD6	; 214
+ 278:	02 c0       	rjmp	.+4      	; 0x27e <nrf_write_multibyte_reg+0x36>
+			break;
+		case NRF_TX_PLOAD:  /* Write Tx payload */
+			CSN_LOW();
+ 27a:	c2 98       	cbi	0x18, 2	; 24
+			SPI_TxRx(WR_TX_PLOAD);
+ 27c:	80 ea       	ldi	r24, 0xA0	; 160
+ 27e:	a7 d0       	rcall	.+334    	; 0x3ce <SPI_TxRx>
+ 280:	03 c0       	rjmp	.+6      	; 0x288 <nrf_write_multibyte_reg+0x40>
+		default:
+			break;
+	}
+
+	while(length--) {
+		SPI_TxRx(*buf++);
+ 282:	89 91       	ld	r24, Y+
+ 284:	a4 d0       	rcall	.+328    	; 0x3ce <SPI_TxRx>
+ 286:	01 50       	subi	r16, 0x01	; 1
+			break;
+		default:
+			break;
+	}
+
+	while(length--) {
+ 288:	00 23       	and	r16, r16
+ 28a:	d9 f7       	brne	.-10     	; 0x282 <nrf_write_multibyte_reg+0x3a>
+		SPI_TxRx(*buf++);
+	}
+
+	CSN_HIGH();
+ 28c:	c2 9a       	sbi	0x18, 2	; 24
+}
+ 28e:	df 91       	pop	r29
+ 290:	cf 91       	pop	r28
+ 292:	1f 91       	pop	r17
+ 294:	0f 91       	pop	r16
+ 296:	08 95       	ret
+
+00000298 <nrf_transmit_packet>:
+ *		0 - If successfully transmitted
+ *		1 - Not successful (ACK not received)
+ *		2 - Cannot transmit (Tx FIFO full)
+ */
+uint8_t nrf_transmit_packet(uint8_t *packet, uint8_t length)
+{
+ 298:	1f 93       	push	r17
+ 29a:	cf 93       	push	r28
+ 29c:	df 93       	push	r29
+ 29e:	ec 01       	movw	r28, r24
+ 2a0:	16 2f       	mov	r17, r22
+	uint8_t 	ret;
+	
+	if(nrf_read_reg(FIFO_STATUS) & TX_FIFO_FULL) {
+ 2a2:	87 e1       	ldi	r24, 0x17	; 23
+ 2a4:	77 df       	rcall	.-274    	; 0x194 <nrf_read_reg>
+ 2a6:	85 ff       	sbrs	r24, 5
+ 2a8:	02 c0       	rjmp	.+4      	; 0x2ae <nrf_transmit_packet+0x16>
+ 2aa:	82 e0       	ldi	r24, 0x02	; 2
+ 2ac:	18 c0       	rjmp	.+48     	; 0x2de <nrf_transmit_packet+0x46>
+		return 2;
+	}
+	
+	nrf_write_multibyte_reg(NRF_TX_PLOAD, packet, length);
+ 2ae:	87 e0       	ldi	r24, 0x07	; 7
+ 2b0:	be 01       	movw	r22, r28
+ 2b2:	41 2f       	mov	r20, r17
+ 2b4:	c9 df       	rcall	.-110    	; 0x248 <nrf_write_multibyte_reg>
+	CE_PULSE();
+ 2b6:	c1 9a       	sbi	0x18, 1	; 24
+ 2b8:	88 ec       	ldi	r24, 0xC8	; 200
+ 2ba:	90 e0       	ldi	r25, 0x00	; 0
+ 2bc:	01 97       	sbiw	r24, 0x01	; 1
+ 2be:	f1 f7       	brne	.-4      	; 0x2bc <nrf_transmit_packet+0x24>
+ 2c0:	c1 98       	cbi	0x18, 1	; 24
+	do {
+		if(tx_done == true) {
+ 2c2:	80 91 76 00 	lds	r24, 0x0076
+ 2c6:	81 30       	cpi	r24, 0x01	; 1
+ 2c8:	21 f4       	brne	.+8      	; 0x2d2 <nrf_transmit_packet+0x3a>
+			tx_done = false;
+ 2ca:	10 92 76 00 	sts	0x0076, r1
+ 2ce:	80 e0       	ldi	r24, 0x00	; 0
+ 2d0:	06 c0       	rjmp	.+12     	; 0x2de <nrf_transmit_packet+0x46>
+			ret = 0;
+			break;
+		}
+		if(max_retries == true) {
+ 2d2:	80 91 78 00 	lds	r24, 0x0078
+ 2d6:	81 30       	cpi	r24, 0x01	; 1
+ 2d8:	a1 f7       	brne	.-24     	; 0x2c2 <nrf_transmit_packet+0x2a>
+			max_retries = false;
+ 2da:	10 92 78 00 	sts	0x0078, r1
+			break;
+		}
+	} while (1);
+	
+	return ret;
+}
+ 2de:	df 91       	pop	r29
+ 2e0:	cf 91       	pop	r28
+ 2e2:	1f 91       	pop	r17
+ 2e4:	08 95       	ret
+
+000002e6 <nrf_set_address>:
+/* Set address of Pipes 
+ * Tx address, Rx Pipe0,Pipe1 address are 5 bytes long
+ * Rx pipe2-5 are given 1 byte address
+ */
+static void nrf_set_address(nrf_pipe_t pipe, const uint8_t *addr)
+{
+ 2e6:	fb 01       	movw	r30, r22
+  switch(pipe)
+ 2e8:	86 30       	cpi	r24, 0x06	; 6
+ 2ea:	18 f4       	brcc	.+6      	; 0x2f2 <nrf_set_address+0xc>
+ 2ec:	82 30       	cpi	r24, 0x02	; 2
+ 2ee:	38 f4       	brcc	.+14     	; 0x2fe <nrf_set_address+0x18>
+ 2f0:	02 c0       	rjmp	.+4      	; 0x2f6 <nrf_set_address+0x10>
+ 2f2:	86 30       	cpi	r24, 0x06	; 6
+ 2f4:	39 f4       	brne	.+14     	; 0x304 <nrf_set_address+0x1e>
+  {
+    case NRF_TX_PIPE:
+    case NRF_PIPE0:
+    case NRF_PIPE1:
+      nrf_write_multibyte_reg((uint8_t) pipe, addr, 0);
+ 2f6:	bf 01       	movw	r22, r30
+ 2f8:	40 e0       	ldi	r20, 0x00	; 0
+ 2fa:	a6 df       	rcall	.-180    	; 0x248 <nrf_write_multibyte_reg>
+ 2fc:	08 95       	ret
+
+    case NRF_PIPE2:
+    case NRF_PIPE3:
+    case NRF_PIPE4:
+    case NRF_PIPE5:
+      nrf_write_reg(RX_ADDR_P0 + (uint8_t) pipe, *addr);
+ 2fe:	86 5f       	subi	r24, 0xF6	; 246
+ 300:	60 81       	ld	r22, Z
+ 302:	ed de       	rcall	.-550    	; 0xde <nrf_write_reg>
+ 304:	08 95       	ret
+
+00000306 <nrf_init>:
+ *		Enable pipes (with/without auto ack)
+ * 		Set data rate, power, payload length and other things
+ *		Set mode to Tx/Rx
+ */
+void nrf_init(nrf_opmode_t mode, const uint8_t *address)
+{
+ 306:	ff 92       	push	r15
+ 308:	0f 93       	push	r16
+ 30a:	1f 93       	push	r17
+ 30c:	f8 2e       	mov	r15, r24
+ 30e:	8b 01       	movw	r16, r22
+static volatile uint8_t max_retries;
+
+
+static void mcu_init(void)
+{
+	CE_OUT();
+ 310:	b9 9a       	sbi	0x17, 1	; 23
+	SPI_Init(SPI_MODE0, SPI_CLKDIV_4);
+ 312:	80 e0       	ldi	r24, 0x00	; 0
+ 314:	60 e0       	ldi	r22, 0x00	; 0
+ 316:	48 d0       	rcall	.+144    	; 0x3a8 <SPI_Init>
+	
+	/* configure INT1 as LOW-level triggered */
+	MCUCR &= ~(1 << ISC11);
+ 318:	85 b7       	in	r24, 0x35	; 53
+ 31a:	87 7f       	andi	r24, 0xF7	; 247
+ 31c:	85 bf       	out	0x35, r24	; 53
+	MCUCR &= ~(1 << ISC10);
+ 31e:	85 b7       	in	r24, 0x35	; 53
+ 320:	8b 7f       	andi	r24, 0xFB	; 251
+ 322:	85 bf       	out	0x35, r24	; 53
+	
+	/* Enable INT1 interrupt for  IRQ */
+	GICR |= (1 << INT1);
+ 324:	8b b7       	in	r24, 0x3b	; 59
+ 326:	80 68       	ori	r24, 0x80	; 128
+ 328:	8b bf       	out	0x3b, r24	; 59
+	
+	/* low level initialization */
+	mcu_init();
+	
+	/* Set Address */
+	nrf_write_reg(SETUP_AW, (uint8_t)(CONFIG_NRF_ADDR_LEN-2));  /* Address width */
+ 32a:	83 e0       	ldi	r24, 0x03	; 3
+ 32c:	63 e0       	ldi	r22, 0x03	; 3
+ 32e:	d7 de       	rcall	.-594    	; 0xde <nrf_write_reg>
+	nrf_set_address(NRF_TX_PIPE, address);  /* Set same address for Tx and Pipe0, for auto ack */
+ 330:	86 e0       	ldi	r24, 0x06	; 6
+ 332:	b8 01       	movw	r22, r16
+ 334:	d8 df       	rcall	.-80     	; 0x2e6 <nrf_set_address>
+	nrf_set_address(NRF_PIPE0, address);
+ 336:	80 e0       	ldi	r24, 0x00	; 0
+ 338:	b8 01       	movw	r22, r16
+ 33a:	d5 df       	rcall	.-86     	; 0x2e6 <nrf_set_address>
+	
+	/* Open channels */
+	reg_val = (1 << 0); /* open only Pipe0 */
+	nrf_write_reg(EN_RXADDR, reg_val);
+ 33c:	82 e0       	ldi	r24, 0x02	; 2
+ 33e:	61 e0       	ldi	r22, 0x01	; 1
+ 340:	ce de       	rcall	.-612    	; 0xde <nrf_write_reg>
+	if(CONFIG_NRF_AUTOACK_ENABLED) {
+		reg_val = (1 << 0);  /* Enable auto ack (only for Pipe 0) */
+		nrf_write_reg(EN_AA, reg_val);
+ 342:	81 e0       	ldi	r24, 0x01	; 1
+ 344:	61 e0       	ldi	r22, 0x01	; 1
+ 346:	cb de       	rcall	.-618    	; 0xde <nrf_write_reg>
+	}
+	
+	/* Set payload length (only for Pipe 0)*/
+	if(mode == NRF_MODE_PRX) {
+ 348:	81 e0       	ldi	r24, 0x01	; 1
+ 34a:	f8 16       	cp	r15, r24
+ 34c:	19 f4       	brne	.+6      	; 0x354 <nrf_init+0x4e>
+		nrf_write_reg(RX_PW_P0, CONFIG_NRF_STATIC_PL_LENGTH);
+ 34e:	81 e1       	ldi	r24, 0x11	; 17
+ 350:	60 e1       	ldi	r22, 0x10	; 16
+ 352:	c5 de       	rcall	.-630    	; 0xde <nrf_write_reg>
+		reg_val |= (1 << 1);
+	}
+	if(!CONFIG_NRF_AUTOACK_ENABLED) {
+		reg_val |= (1 << 0);
+	}
+	nrf_write_reg(LOCK_UNLOCK,0);  
+ 354:	80 e5       	ldi	r24, 0x50	; 80
+ 356:	60 e0       	ldi	r22, 0x00	; 0
+ 358:	c2 de       	rcall	.-636    	; 0xde <nrf_write_reg>
+	nrf_write_reg(0x73,0);			/* Unlock FEATURE register */
+ 35a:	83 e7       	ldi	r24, 0x73	; 115
+ 35c:	60 e0       	ldi	r22, 0x00	; 0
+ 35e:	bf de       	rcall	.-642    	; 0xde <nrf_write_reg>
+	nrf_write_reg(FEATURE, reg_val);
+ 360:	8d e1       	ldi	r24, 0x1D	; 29
+ 362:	60 e0       	ldi	r22, 0x00	; 0
+ 364:	bc de       	rcall	.-648    	; 0xde <nrf_write_reg>
+	/* Retransmit reg */
+	reg_val = 0;
+	if(CONFIG_NRF_AUTOACK_ENABLED) {
+		reg_val = (((CONFIG_NRF_RETRANS_DELAY/250)-1) << 4)|(CONFIG_NRF_TX_RETRANSMITS & 0xF);
+	}
+	nrf_write_reg(SETUP_RETR, reg_val);
+ 366:	84 e0       	ldi	r24, 0x04	; 4
+ 368:	6f e1       	ldi	r22, 0x1F	; 31
+ 36a:	b9 de       	rcall	.-654    	; 0xde <nrf_write_reg>
+	
+	/* RF setup reg */
+	reg_val = nrf_read_reg(RF_SETUP);
+ 36c:	86 e0       	ldi	r24, 0x06	; 6
+ 36e:	12 df       	rcall	.-476    	; 0x194 <nrf_read_reg>
+	reg_val &= ~(RF_DR_LOW|RF_DR_HIGH|RF_PWR1|RF_PWR0);
+ 370:	68 2f       	mov	r22, r24
+ 372:	61 7d       	andi	r22, 0xD1	; 209
+		reg_val |= RF_DR_HIGH;
+	} else if(CONFIG_NRF_DATA_RATE == NRF_RATE_2MBPS) {  
+		reg_val |=  RF_DR_LOW;
+	}
+	reg_val |= (CONFIG_NRF_TX_PWR << 1);
+	nrf_write_reg(RF_SETUP, reg_val);
+ 374:	6e 60       	ori	r22, 0x0E	; 14
+ 376:	86 e0       	ldi	r24, 0x06	; 6
+ 378:	b2 de       	rcall	.-668    	; 0xde <nrf_write_reg>
+
+
+	/* RF Channel reg*/
+	nrf_write_reg(RF_CH, CONFIG_NRF_RF_CHANNEL);
+ 37a:	85 e0       	ldi	r24, 0x05	; 5
+ 37c:	68 e2       	ldi	r22, 0x28	; 40
+ 37e:	af de       	rcall	.-674    	; 0xde <nrf_write_reg>
+	
+	/* Config reg */
+	reg_val = (CONFIG_EN_CRC|CONFIG_CRCO|CONFIG_PWR_UP);
+	if(mode == NRF_MODE_PRX) {
+ 380:	81 e0       	ldi	r24, 0x01	; 1
+ 382:	f8 16       	cp	r15, r24
+ 384:	11 f4       	brne	.+4      	; 0x38a <nrf_init+0x84>
+ 386:	6f e0       	ldi	r22, 0x0F	; 15
+ 388:	01 c0       	rjmp	.+2      	; 0x38c <nrf_init+0x86>
+ 38a:	6e e0       	ldi	r22, 0x0E	; 14
+		reg_val |= 1;
+	}
+	nrf_write_reg(CONFIG, reg_val);
+ 38c:	80 e0       	ldi	r24, 0x00	; 0
+ 38e:	a7 de       	rcall	.-690    	; 0xde <nrf_write_reg>
+	
+	/* Set CE High for Rx mode */
+	if(mode == NRF_MODE_PRX) {
+ 390:	81 e0       	ldi	r24, 0x01	; 1
+ 392:	f8 16       	cp	r15, r24
+ 394:	09 f4       	brne	.+2      	; 0x398 <nrf_init+0x92>
+		CE_HIGH();
+ 396:	c1 9a       	sbi	0x18, 1	; 24
+ 398:	80 e1       	ldi	r24, 0x10	; 16
+ 39a:	97 e2       	ldi	r25, 0x27	; 39
+ 39c:	01 97       	sbiw	r24, 0x01	; 1
+ 39e:	f1 f7       	brne	.-4      	; 0x39c <nrf_init+0x96>
+	}
+	
+	_delay_ms(5);
+}
+ 3a0:	1f 91       	pop	r17
+ 3a2:	0f 91       	pop	r16
+ 3a4:	ff 90       	pop	r15
+ 3a6:	08 95       	ret
+
+000003a8 <SPI_Init>:
+
+/* Initialize the SPI interface in Master mode with given SPI mode and clock rate division */
+void SPI_Init(SPI_MODE_t mode, SPI_CLKDIV_t clk_div)
+{
+	/* Set MOSI, SCK as ouput */
+	DDRB |= (1 << 3)|(1 << 5);
+ 3a8:	97 b3       	in	r25, 0x17	; 23
+ 3aa:	98 62       	ori	r25, 0x28	; 40
+ 3ac:	97 bb       	out	0x17, r25	; 23
+	
+	/* Slave Select pin is output, initially HIGH */
+	SS_DDR |= (1 << SS_PIN);
+ 3ae:	ba 9a       	sbi	0x17, 2	; 23
+	SS_HIGH();
+ 3b0:	c2 9a       	sbi	0x18, 2	; 24
+	
+	/* Initialize SPI */
+	SPCR = (1 << 6)|(1 << 4)|(mode << 2);  /* Enable SPI, master mode, MSB first, given mode */
+ 3b2:	88 0f       	add	r24, r24
+ 3b4:	88 0f       	add	r24, r24
+ 3b6:	80 65       	ori	r24, 0x50	; 80
+ 3b8:	8d b9       	out	0x0d, r24	; 13
+	SPCR |= (clk_div & 0x3); /* Clock rate division */
+ 3ba:	9d b1       	in	r25, 0x0d	; 13
+ 3bc:	86 2f       	mov	r24, r22
+ 3be:	83 70       	andi	r24, 0x03	; 3
+ 3c0:	89 2b       	or	r24, r25
+ 3c2:	8d b9       	out	0x0d, r24	; 13
+	if(clk_div & (1 << 2))
+ 3c4:	62 ff       	sbrs	r22, 2
+ 3c6:	02 c0       	rjmp	.+4      	; 0x3cc <SPI_Init+0x24>
+	{
+		SPSR = 0x1;  /* SPI2X bit */
+ 3c8:	81 e0       	ldi	r24, 0x01	; 1
+ 3ca:	8e b9       	out	0x0e, r24	; 14
+ 3cc:	08 95       	ret
+
+000003ce <SPI_TxRx>:
+
+
+uint8_t SPI_TxRx(uint8_t data)
+{
+	/* Start transmission */
+	SPDR = data;
+ 3ce:	8f b9       	out	0x0f, r24	; 15
+	
+	/* Wait for transmission complete */
+	while(!(SPSR & (1 << SPIF)) )
+ 3d0:	77 9b       	sbis	0x0e, 7	; 14
+ 3d2:	fe cf       	rjmp	.-4      	; 0x3d0 <SPI_TxRx+0x2>
+		;
+	
+	return SPDR;
+ 3d4:	8f b1       	in	r24, 0x0f	; 15
+}
+ 3d6:	08 95       	ret
+
+000003d8 <SPI_TxBuf>:
+
+
+void SPI_TxBuf(uint8_t *buf, uint16_t length)
+{
+ 3d8:	fc 01       	movw	r30, r24
+ 3da:	08 c0       	rjmp	.+16     	; 0x3ec <SPI_TxBuf+0x14>
+	while(length--)
+	{
+		SPI_TxRx(*buf++);
+ 3dc:	80 81       	ld	r24, Z
+
+
+uint8_t SPI_TxRx(uint8_t data)
+{
+	/* Start transmission */
+	SPDR = data;
+ 3de:	8f b9       	out	0x0f, r24	; 15
+	
+	/* Wait for transmission complete */
+	while(!(SPSR & (1 << SPIF)) )
+ 3e0:	77 9b       	sbis	0x0e, 7	; 14
+ 3e2:	fe cf       	rjmp	.-4      	; 0x3e0 <SPI_TxBuf+0x8>
+
+void SPI_TxBuf(uint8_t *buf, uint16_t length)
+{
+	while(length--)
+	{
+		SPI_TxRx(*buf++);
+ 3e4:	31 96       	adiw	r30, 0x01	; 1
+	
+	/* Wait for transmission complete */
+	while(!(SPSR & (1 << SPIF)) )
+		;
+	
+	return SPDR;
+ 3e6:	8f b1       	in	r24, 0x0f	; 15
+ 3e8:	61 50       	subi	r22, 0x01	; 1
+ 3ea:	70 40       	sbci	r23, 0x00	; 0
+}
+
+
+void SPI_TxBuf(uint8_t *buf, uint16_t length)
+{
+	while(length--)
+ 3ec:	61 15       	cp	r22, r1
+ 3ee:	71 05       	cpc	r23, r1
+ 3f0:	a9 f7       	brne	.-22     	; 0x3dc <SPI_TxBuf+0x4>
+	{
+		SPI_TxRx(*buf++);
+	}
+}
+ 3f2:	08 95       	ret
+
+000003f4 <SPI_RxBuf>:
+
+void SPI_RxBuf(uint8_t *buf, uint16_t length)
+{
+ 3f4:	fc 01       	movw	r30, r24
+ 3f6:	07 c0       	rjmp	.+14     	; 0x406 <SPI_RxBuf+0x12>
+
+
+uint8_t SPI_TxRx(uint8_t data)
+{
+	/* Start transmission */
+	SPDR = data;
+ 3f8:	1f b8       	out	0x0f, r1	; 15
+	
+	/* Wait for transmission complete */
+	while(!(SPSR & (1 << SPIF)) )
+ 3fa:	77 9b       	sbis	0x0e, 7	; 14
+ 3fc:	fe cf       	rjmp	.-4      	; 0x3fa <SPI_RxBuf+0x6>
+		;
+	
+	return SPDR;
+ 3fe:	8f b1       	in	r24, 0x0f	; 15
+
+void SPI_RxBuf(uint8_t *buf, uint16_t length)
+{
+	while(length--)
+	{
+		*buf++ = SPI_TxRx(0x00);
+ 400:	81 93       	st	Z+, r24
+ 402:	61 50       	subi	r22, 0x01	; 1
+ 404:	70 40       	sbci	r23, 0x00	; 0
+	}
+}
+
+void SPI_RxBuf(uint8_t *buf, uint16_t length)
+{
+	while(length--)
+ 406:	61 15       	cp	r22, r1
+ 408:	71 05       	cpc	r23, r1
+ 40a:	b1 f7       	brne	.-20     	; 0x3f8 <SPI_RxBuf+0x4>
+	{
+		*buf++ = SPI_TxRx(0x00);
+	}	
+}
+ 40c:	08 95       	ret
+
+0000040e <_exit>:
+ 40e:	f8 94       	cli
+
+00000410 <__stop_program>:
+ 410:	ff cf       	rjmp	.-2      	; 0x410 <__stop_program>
