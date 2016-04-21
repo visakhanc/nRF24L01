@@ -19,7 +19,6 @@
 #ifndef NRF24L01P_CONFIG_H
 #define NRF24L01P_CONFIG_H 
 
-#include "nrf24l01P_reg.h"
 
 
 /******** I/O PIN DEFINITIONS FOR AVR *********/

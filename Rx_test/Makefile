@@ -6,15 +6,17 @@ MCU = atmega8
 F_CPU = 8000000
 FORMAT = ihex
 TARGET = nRF24L01P_Rx
-NRF_DIR = ../nRF_lib
-SRC = main.c $(NRF_DIR)/nrf24l01P_lib.c $(NRF_DIR)/avr_spi.c
+COMMON_DIR = ../../common
+NRF_DIR = $(COMMON_DIR)/nRF24L01_lib
+SPI_DIR = $(COMMON_DIR)/avr_spi
+SRC = main.c $(NRF_DIR)/nrf24l01P_lib.c $(SPI_DIR)/avr_spi.c
 OPT = s
 
 # List any extra directories to look for include files here.
 #     Each directory must be seperated by a space.
 #     Use forward slashes for directory separators.
 #     For a directory that has spaces, enclose it in quotes.
-CINCS = -I$(NRF_DIR) -I.
+CINCS = -I$(NRF_DIR) -I$(SPI_DIR) -I.
 
 # List any extra directories to look for libraries here.
 #     Each directory must be seperated by a space.
