@@ -19,8 +19,6 @@
 #ifndef NRF24L01P_CONFIG_H
 #define NRF24L01P_CONFIG_H 
 
-#include "nrf24l01P_reg.h"
-
 
 /******** I/O PIN DEFINITIONS FOR AVR *********/
 
@@ -30,7 +28,6 @@
 #define CE_PIN   	1
 
 /**********************************************/
- 
  /* Address of the radio and Address length 
   * example: 
   *	#define NRF_ADDRESS		{0x11, 0x22, 0x33, 0x44, 0x55}
