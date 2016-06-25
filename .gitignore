@@ -1,0 +1,39 @@
+#-----specific to this project-------
+
+.metadata/
+RemoteSystemsTempFiles/
+# dont add these projects yet
+frdm_kl46z_mag3110/
+kl46z_ksdk20_test/
+kl46z_ksdk20_test_rtos/
+timer_uCOSIII/
+**/Debug/
+**/Release/
+
+
+# ------ global --------------
+# Object files
+*.o
+*.obj
+*.elf
+*.d
+
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+
+# Executables
+*.exe
+*.out
+*.app
+*.hex
+
+#others
+*.map
+*.lss
+*.eep
