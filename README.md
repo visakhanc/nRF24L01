@@ -4,6 +4,8 @@ These are projects based on nRF24L01 radio modules for AVR. Basic Tx and Rx exam
 The examples are targeted for AVR ATmega8 MCU, but can be run on any AVR having an SPI interface and one external interrupt pin. The library uses INT1 as interrupt
 
 NOTE:
-For compiling these projects, library for nRF24L01 from 'common_libs' repo is needed. 
+For compiling these projects, library for nRF24L01 from 'common_libs' repository is needed. 
+
+
 
 
