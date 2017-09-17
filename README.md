@@ -6,4 +6,4 @@ The examples are targeted for AVR ATmega8 MCU, but can be run on any AVR having 
 
 
 NOTE:
-For compiling these projects, library for nRF24L01 from 'common_libs' repository is needed. 
+For compiling these projects, library for nRF24L01 from [common_libs](https://github.com/visakhanc/common_libs) repository is needed. 
