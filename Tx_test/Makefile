@@ -5,11 +5,11 @@
 MCU = atmega8
 F_CPU = 8000000
 FORMAT = ihex
-TARGET = nRF24L01P_Tx
+TARGET = nRF24L01_Tx
 COMMON_DIR = ../../common
 NRF_DIR = $(COMMON_DIR)/nRF24L01_lib
 SPI_DIR = $(COMMON_DIR)/avr_spi
-SRC = main.c $(NRF_DIR)/nrf24l01P_lib.c $(SPI_DIR)/avr_spi.c
+SRC = main.c $(NRF_DIR)/nrf24l01_lib.c $(SPI_DIR)/avr_spi.c
 OPT = s
 
 # List any extra directories to look for include files here.

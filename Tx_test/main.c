@@ -13,7 +13,7 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include <avr/sleep.h>
-#include "nrf24l01P.h"
+#include "nrf24l01.h"
 
 #define RED_LED					PB0
 #define RED_LED_DDR				DDRB
